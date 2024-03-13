@@ -99,6 +99,7 @@ google/devtools/build/lib/analysis/AnalysisProtos$ParamFileOrBuilder.class
 google/devtools/build/lib/analysis/AnalysisProtosV2$ActionGraphContainer$1.class
 google/devtools/build/lib/analysis/AnalysisProtosV2$Action.class
 google/devtools/build/lib/query2/proto/proto2api/Build$FilesetEntryOrBuilder.class
+com/fsoft/multinav/MultiNav.class
 google/devtools/build/lib/query2/proto/proto2api/Build$LicenseOrBuilder.class
 google/devtools/build/lib/query2/proto/proto2api/Build$AllowedRuleClassInfo$AllowedRuleClasses.class
 google/devtools/build/lib/query2/proto/proto2api/Build$Rule.class

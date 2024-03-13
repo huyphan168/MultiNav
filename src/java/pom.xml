@@ -94,8 +94,8 @@
                 <artifactId>maven-compiler-plugin</artifactId>
                 <version>3.8.0</version>
                 <configuration>
-                    <source>17</source>
-                    <target>17</target>
+                    <source>11</source>
+                    <target>11</target>
                     <compilerArgs>
                         <arg>--add-exports</arg>
                         <arg>jdk.compiler/com.sun.tools.javac.api=ALL-UNNAMED</arg>
@@ -166,6 +166,8 @@
                 <artifactId>maven-assembly-plugin</artifactId>
                 <version>3.3.0</version>
                 <configuration>
+                    <source>11</source>
+                    <target>11</target>
                     <archive>
                         <manifest>
                             <mainClass>com.fsoft.multinav.Main</mainClass>
@@ -182,6 +184,14 @@
                         <goals>
                             <goal>single</goal>
                         </goals>
+                        <configuration>
+                            <archive>
+                                <manifestEntries>
+                                    <Add-Exports>jdk.compiler/com.sun.tools.javac.api jdk.compiler/com.sun.tools.javac.code jdk.compiler/com.sun.tools.javac.comp jdk.compiler/com.sun.tools.javac.main jdk.compiler/com.sun.tools.javac.tree jdk.compiler/com.sun.tools.javac.model jdk.compiler/com.sun.tools.javac.util</Add-Exports>
+                                    <Add-Opens>jdk.compiler/com.sun.tools.javac.api</Add-Opens>
+                                </manifestEntries>
+                            </archive>
+                        </configuration>
                     </execution>
                 </executions>
             </plugin>
