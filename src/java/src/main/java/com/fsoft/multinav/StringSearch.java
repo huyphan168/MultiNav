@@ -213,7 +213,6 @@ public class StringSearch {
             var chars = StandardCharsets.UTF_8.decode(SEARCH_BUFFER);
             return matchesTitleCase(chars, query);
         } catch (NoSuchFileException e) {
-            LOG.warning(e.getMessage());
             return false;
         } catch (IOException e) {
             throw new RuntimeException(e);
@@ -235,7 +234,6 @@ public class StringSearch {
             SEARCH_BUFFER.position(0);
             return search.nextWord(SEARCH_BUFFER) != -1;
         } catch (NoSuchFileException e) {
-            LOG.warning(e.getMessage());
             return false;
         } catch (IOException e) {
             throw new RuntimeException(e);
@@ -257,7 +255,6 @@ public class StringSearch {
             SEARCH_BUFFER.position(0);
             return search.next(SEARCH_BUFFER) != -1;
         } catch (NoSuchFileException e) {
-            LOG.warning(e.getMessage());
             return false;
         } catch (IOException e) {
             throw new RuntimeException(e);

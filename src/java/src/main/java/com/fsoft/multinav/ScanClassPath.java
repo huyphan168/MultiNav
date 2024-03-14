@@ -111,7 +111,6 @@ class ScanClassPath {
     };
 
     static Set<String> jdkTopLevelClasses() {
-        LOG.info("Searching for top-level classes in the JDK");
 
         var classes = new HashSet<String>();
         var fs = FileSystems.getFileSystem(URI.create("jrt:/"));
@@ -133,13 +132,11 @@ class ScanClassPath {
             }
         }
 
-        LOG.info(String.format("Found %d classes in the java platform", classes.size()));
 
         return classes;
     }
 
     static Set<String> classPathTopLevelClasses(Set<Path> classPath) {
-        LOG.info(String.format("Searching for top-level classes in %d classpath locations", classPath.size()));
 
         var urls = classPath.stream().map(ScanClassPath::toUrl).toArray(URL[]::new);
         var classLoader = new URLClassLoader(urls, null);
@@ -154,7 +151,6 @@ class ScanClassPath {
             classes.add(c.getName());
         }
 
-        LOG.info(String.format("Found %d classes in classpath", classes.size()));
 
         return classes;
     }

@@ -65,7 +65,6 @@ public class FileStore {
         @Override
         public FileVisitResult preVisitDirectory(Path dir, BasicFileAttributes attrs) {
             if (attrs.isSymbolicLink()) {
-                LOG.warning("Don't check " + dir + " for java sources");
                 return FileVisitResult.SKIP_SUBTREE;
             }
             return FileVisitResult.CONTINUE;
@@ -193,7 +192,6 @@ public class FileStore {
             var packageName = StringSearch.packageName(file);
             javaSources.put(file, new Info(time, packageName));
         } catch (NoSuchFileException e) {
-            LOG.warning(e.getMessage());
             javaSources.remove(file);
         } catch (IOException e) {
             throw new RuntimeException(e);
@@ -214,7 +212,6 @@ public class FileStore {
         try {
             return Files.readString(file);
         } catch (NoSuchFileException e) {
-            LOG.warning(e.getMessage());
             return "";
         } catch (IOException e) {
             throw new RuntimeException(e);
@@ -231,7 +228,6 @@ public class FileStore {
         try {
             return Files.newInputStream(file);
         } catch (NoSuchFileException e) {
-            LOG.warning(e.getMessage());
             byte[] bs = {};
             return new ByteArrayInputStream(bs);
         } catch (IOException e) {
@@ -248,7 +244,6 @@ public class FileStore {
         try {
             return Files.newBufferedReader(file);
         } catch (NoSuchFileException e) {
-            LOG.warning(e.getMessage());
             return new BufferedReader(new StringReader(""));
         } catch (IOException e) {
             throw new RuntimeException(e);

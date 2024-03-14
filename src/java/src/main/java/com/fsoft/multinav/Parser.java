@@ -67,8 +67,6 @@ class Parser {
     static Parser parseJavaFileObject(JavaFileObject file) {
         if (needsParse(file)) {
             loadParse(file);
-        } else {
-            LOG.info("...using cached parse");
         }
         return cachedParse;
     }
@@ -98,7 +96,6 @@ class Parser {
 
         // If start is -1, give up
         if (start == -1) {
-            LOG.warning(String.format("Couldn't locate `%s`", path.getLeaf()));
             return Range.NONE;
         }
         // If end is bad, guess based on start
@@ -117,7 +114,6 @@ class Parser {
             var name = cls.getSimpleName().toString();
             start = indexOf(contents, name, start);
             if (start == -1) {
-                LOG.warning(String.format("Couldn't find identifier `%s` in `%s`", name, path.getLeaf()));
                 return Range.NONE;
             }
             end = start + name.length();
@@ -136,7 +132,6 @@ class Parser {
             }
             start = indexOf(contents, name, start);
             if (start == -1) {
-                LOG.warning(String.format("Couldn't find identifier `%s` in `%s`", name, path.getLeaf()));
                 return Range.NONE;
             }
             end = start + name.length();
@@ -152,7 +147,6 @@ class Parser {
             var name = field.getName().toString();
             start = indexOf(contents, name, start);
             if (start == -1) {
-                LOG.warning(String.format("Couldn't find identifier `%s` in `%s`", name, path.getLeaf()));
                 return Range.NONE;
             }
             end = start + name.length();
@@ -162,7 +156,6 @@ class Parser {
             var name = member.getIdentifier().toString();
             start = indexOf(contents, name, start);
             if (start == -1) {
-                LOG.warning(String.format("Couldn't find identifier `%s` in `%s`", name, path.getLeaf()));
                 return Range.NONE;
             }
             end = start + name.length();
@@ -390,17 +383,13 @@ class Parser {
 
     static Optional<Path> declaringFile(Element e) {
         // Find top-level type surrounding `to`
-        LOG.info(String.format("...looking up declaring file of `%s`...", e));
         var top = topLevelDeclaration(e);
         if (!top.isPresent()) {
-            LOG.warning("...no top-level type!");
             return Optional.empty();
         }
         // Find file by looking at package and class name
-        LOG.info(String.format("...top-level type is %s", top.get()));
         var file = FileStore.findDeclaringFile(top.get());
         if (!file.isPresent()) {
-            LOG.info(String.format("...couldn't find declaring file for type"));
             return Optional.empty();
         }
         return file;

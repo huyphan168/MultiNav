@@ -58,7 +58,6 @@ class InferConfig {
                 var a = Artifact.parse(id);
                 var found = findAnyJar(a, false);
                 if (found == NOT_FOUND) {
-                    LOG.warning(String.format("Couldn't find jar for %s in %s or %s", a, mavenHome, gradleHome));
                     continue;
                 }
                 result.add(found);
@@ -99,7 +98,6 @@ class InferConfig {
                 var a = Artifact.parse(id);
                 var found = findAnyJar(a, true);
                 if (found == NOT_FOUND) {
-                    LOG.warning(String.format("Couldn't find doc jar for %s in %s or %s", a, mavenHome, gradleHome));
                     continue;
                 }
                 result.add(found);
@@ -139,7 +137,6 @@ class InferConfig {
                         .resolve(artifact.version)
                         .resolve(fileName(artifact, source));
         if (!Files.exists(jar)) {
-            LOG.warning(jar + " does not exist");
             return NOT_FOUND;
         }
         return jar;
@@ -187,7 +184,6 @@ class InferConfig {
                 "-DoutputAbsoluteArtifactFilename=true",
             };
             var output = Files.createTempFile("java-language-server-maven-output", ".txt");
-            LOG.info("Running " + String.join(" ", command) + " ...");
             var workingDirectory = pomXml.toAbsolutePath().getParent().toFile();
             var process =
                     new ProcessBuilder()
@@ -199,7 +195,6 @@ class InferConfig {
             // Wait for process to exit
             var result = process.waitFor();
             if (result != 0) {
-                LOG.severe("`" + String.join(" ", command) + "` returned " + result);
                 return Set.of();
             }
             // Read output
@@ -226,7 +221,6 @@ class InferConfig {
         }
         var artifact = match.group(1);
         var path = match.group(2);
-        LOG.info(String.format("...%s => %s", artifact, path));
         return Paths.get(path);
     }
 
@@ -421,7 +415,6 @@ class InferConfig {
                 continue;
             }
             var relative = artifact.getExecPath();
-            LOG.info("...found bazel dependency " + relative);
             artifactPaths.add(relative);
         }
         return artifactPaths;
@@ -456,7 +449,6 @@ class InferConfig {
                 // artifact was not specified by --filterArgument
                 continue;
             }
-            LOG.info("...found bazel dependency " + relative);
             artifactPaths.add(relative);
         }
         return artifactPaths;
@@ -476,7 +468,6 @@ class InferConfig {
 
     private static Path fork(Path workspaceRoot, String[] command) {
         try {
-            LOG.info("Running " + String.join(" ", command) + " ...");
             var output = Files.createTempFile("java-language-server-bazel-output", ".proto");
             var process =
                     new ProcessBuilder()
@@ -488,7 +479,6 @@ class InferConfig {
             // Wait for process to exit
             var result = process.waitFor();
             if (result != 0) {
-                LOG.severe("`" + String.join(" ", command) + "` returned " + result);
                 return NOT_FOUND;
             }
             return output;

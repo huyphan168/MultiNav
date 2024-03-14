@@ -332,7 +332,6 @@ package com.fsoft.multinav;
                      return;
                  }
              } catch (SecurityException e) {
-                 logger.warning("Cannot access " + file + ": " + e);
                  // TODO(emcmanus): consider whether to log other failure cases too.
                  return;
              }
@@ -384,7 +383,6 @@ package com.fsoft.multinav;
                          url = getClassPathEntry(jarFile, path);
                      } catch (MalformedURLException e) {
                          // Ignore bad entry
-                         logger.warning("Invalid Class-Path entry: " + path);
                          continue;
                      }
                      if (url.getProtocol().equals("file")) {
@@ -440,7 +438,7 @@ package com.fsoft.multinav;
                          urls.add(new URL("file", null, new File(entry).getAbsolutePath()));
                      }
                  } catch (MalformedURLException e) {
-                     logger.log(WARNING, "malformed classpath entry: " + entry, e);
+                     
                  }
              }
              return Collections.unmodifiableList(urls);
@@ -504,7 +502,6 @@ package com.fsoft.multinav;
                  throws IOException {
              File[] files = directory.listFiles();
              if (files == null) {
-                 logger.warning("Cannot read directory " + directory);
                  // IO error, just skip the directory
                  return;
              }

@@ -1,9 +1,13 @@
-class BaseNav:
-    def ___init__(self, root, max_workers=16):
-        self.root = root
-        self.max_workers = max_workers
-
-    def execute(self, file, line, column):
-        raise NotImplementedError("Subclasses should implement this!")
+from vertexvista.MultiNav.src.java.interface import JavaNav
+from vertexvista.MultiNav.src.python.interface import PyNav
     
+class MultiNav:
+    def __init__(self, language, root):
+        if language == "python":
+            self.nav = PyNav(root)
+        elif language == "java":
+            self.nav = JavaNav(root)
     
+    def request_definition(self, file_path, line, column):
+        result = self.nav.execute(file_path, line, column)
+        return result

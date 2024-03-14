@@ -57,11 +57,9 @@ public class Docs {
         for (var rel : locations) {
             var abs = javaHome.resolve(rel);
             if (Files.exists(abs)) {
-                LOG.info("Found " + abs);
                 return abs;
             }
         }
-        LOG.warning("Couldn't find src.zip in " + javaHome);
         return NOT_FOUND;
     }
 

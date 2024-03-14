@@ -76,7 +76,6 @@ class JavaCompilerService implements CompilerProvider {
         var addFiles = firstAttempt.needsAdditionalSources();
         if (addFiles.isEmpty()) return firstAttempt;
         // If the compiler needs additional source files that contain package-private files
-        LOG.info("...need to recompile with " + addFiles);
         firstAttempt.close();
         firstAttempt.borrow.close();
         var moreSources = new ArrayList<JavaFileObject>();
@@ -90,8 +89,6 @@ class JavaCompilerService implements CompilerProvider {
     private CompileBatch compileBatch(Collection<? extends JavaFileObject> sources) {
         if (needsCompile(sources)) {
             loadCompile(sources);
-        } else {
-            LOG.info("...using cached compile");
         }
         return cachedCompile;
     }
@@ -256,7 +253,6 @@ class JavaCompilerService implements CompilerProvider {
                 var fromModuleSourcePath =
                         docs.fileManager.getJavaFileForInput(moduleLocation, className, JavaFileObject.Kind.SOURCE);
                 if (fromModuleSourcePath != null) {
-                    LOG.info(String.format("...found %s in module %s of jdk", fromModuleSourcePath.toUri(), module));
                     return Optional.of(fromModuleSourcePath);
                 }
             }
