@@ -7,13 +7,19 @@ import java.nio.file.Paths;
 /** Find java sources in maven-project */
 public class FindResource {
 
-    public static URI uri(String resourcePath) {
+    public final String home;
+
+    public FindResource(Path _home){
+        home = _home.toString();
+    }
+
+    public URI uri(String resourcePath) {
         var path = path(resourcePath);
         return path.toUri();
     }
 
-    public static Path path(String resourcePath) {
+    public Path path(String resourcePath) {
         if (resourcePath.startsWith("/")) resourcePath = resourcePath.substring(1);
-        return Paths.get("/home/anhnt446/MultiNav/src/java/src/test/examples").resolve(resourcePath).toAbsolutePath().normalize();
+        return Paths.get(home).resolve(resourcePath).toAbsolutePath().normalize();
     }
 }

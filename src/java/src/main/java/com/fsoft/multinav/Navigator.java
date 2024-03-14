@@ -12,6 +12,7 @@ public class Navigator {
     private JsonObject cacheSettings;
     private boolean modifiedBuild = true;
     private JsonObject settings = new JsonObject();
+    private FindResource fr;
 
     JavaCompilerService compiler() {
         if (needsCompiler()) {
@@ -24,6 +25,7 @@ public class Navigator {
 
     public void initialize(InitializeParams params) {
         this.workspaceRoot = Paths.get(params.rootUri);
+        this.fr = new FindResource(Paths.get(params.rootUri));
         FileStore.setWorkspaceRoots(Set.of(Paths.get(params.rootUri)));
     }
 
@@ -116,7 +118,7 @@ public class Navigator {
     private List<String> doGoto(String file, int row, int column, boolean includeColumn) {
         TextDocumentIdentifier document = new TextDocumentIdentifier();
 
-        document.uri = FindResource.uri(file);
+        document.uri = fr.uri(file);
 
         Position position = new Position();
 

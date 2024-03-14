@@ -8,6 +8,7 @@
 /home/anhnt446/MultiNav/src/java/src/main/java/com/fsoft/multinav/Location.java
 /home/anhnt446/MultiNav/src/java/src/main/java/google/devtools/build/lib/analysis/AnalysisProtos.java
 /home/anhnt446/MultiNav/src/java/src/main/java/google/devtools/build/lib/query2/proto/proto2api/Build.java
+/home/anhnt446/MultiNav/src/java/src/main/java/com/fsoft/multinav/Task.java
 /home/anhnt446/MultiNav/src/java/src/main/java/com/fsoft/multinav/Position.java
 /home/anhnt446/MultiNav/src/java/src/main/java/com/fsoft/multinav/SourceFileManager.java
 /home/anhnt446/MultiNav/src/java/src/main/java/com/fsoft/multinav/ReusableCompiler.java
@@ -30,6 +31,7 @@
 /home/anhnt446/MultiNav/src/java/src/main/java/com/fsoft/multinav/CompileBatch.java
 /home/anhnt446/MultiNav/src/java/src/main/java/com/fsoft/multinav/FindTypeDeclarations.java
 /home/anhnt446/MultiNav/src/java/src/main/java/com/fsoft/multinav/ParseTask.java
+/home/anhnt446/MultiNav/src/java/src/main/java/com/fsoft/multinav/ParallelMultiNav.java
 /home/anhnt446/MultiNav/src/java/src/main/java/com/fsoft/multinav/Cache.java
 /home/anhnt446/MultiNav/src/java/src/main/java/com/fsoft/multinav/InitializeParams.java
 /home/anhnt446/MultiNav/src/java/src/main/java/com/fsoft/multinav/DefinitionProvider.java

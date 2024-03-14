@@ -29,6 +29,7 @@ google/devtools/build/lib/analysis/AnalysisProtosV2$KeyValuePair.class
 google/devtools/build/lib/query2/proto/proto2api/Build$Attribute$Builder.class
 google/devtools/build/lib/analysis/AnalysisProtosV2$AspectDescriptor$Builder.class
 google/devtools/build/lib/query2/proto/proto2api/Build$Attribute$Selector$1.class
+com/fsoft/multinav/ParallelMultiNav.class
 google/devtools/build/lib/query2/proto/proto2api/Build$StringListDictEntry$1.class
 google/devtools/build/lib/query2/proto/proto2api/Build$RuleDefinition.class
 google/devtools/build/lib/analysis/AnalysisProtos$CqueryResult.class
@@ -245,6 +246,7 @@ google/devtools/build/lib/query2/proto/proto2api/Build$EnvironmentGroupOrBuilder
 google/devtools/build/lib/query2/proto/proto2api/Build$StringDictEntry$1.class
 google/devtools/build/lib/query2/proto/proto2api/Build$AttributeValue$DictEntry$1.class
 google/devtools/build/lib/query2/proto/proto2api/Build$QueryResult.class
+com/fsoft/multinav/Task.class
 google/devtools/build/lib/analysis/AnalysisProtosV2$TargetOrBuilder.class
 google/devtools/build/lib/query2/proto/proto2api/Build$LabelKeyedStringDictEntry$1.class
 com/fsoft/multinav/ReusableCompiler$ReusableContext$ReusableJavaCompiler.class
